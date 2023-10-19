@@ -8,11 +8,36 @@ export default function TodoApp(){
         'item 3'
     ]); 
     
-    return(
+    const [inputValue, setInputValue] = useState('');
+
+    const handleInputChange = (event) => {
+      setInputValue(event.target.value);
+    };
+  
+    const handleAddTodo = () => {
+      if (inputValue.trim()) {
+        setTodos([...todos, inputValue]);
+        setInputValue('');
+      }
+    };
+  
+    return (
+      <div>
         <div>
-            <p>{todos}</p>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter a todo"
+          />
+          <button onClick={handleAddTodo}>Add Todo</button>
         </div>
-
+        <ul>
+          {todos.map((todo, index) => (
+            <li key={index}>{todo}</li>
+          ))}
+        </ul>
+      </div>
     );
+  }
 
-}
