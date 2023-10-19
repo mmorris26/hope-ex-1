@@ -3,9 +3,9 @@ import { useState } from "react";
 export default function TodoApp(){
     
     const [todos, setTodos] = useState([
-        'item 1',
-        'item 2',
-        'item 3'
+    { text: 'item 1', completed: false },
+    { text: 'item 2', completed: false },
+    { text: 'item 3', completed: false }
     ]); 
     
     const [inputValue, setInputValue] = useState('');
@@ -17,7 +17,7 @@ export default function TodoApp(){
   
     function handleAddTodo() {
       if (inputValue.trim()) {
-        setTodos([...todos, inputValue]);
+        setTodos([...todos, {text: inputValue, completed: false}]);
         //console.log(todos)
         setInputValue('');
       }
@@ -28,6 +28,12 @@ export default function TodoApp(){
         newTodos.splice(index, 1);
         setTodos(newTodos);
     }
+
+    const toggleCompletion = (index) => {
+        const newTodos = [...todos];
+        newTodos[index].completed = !newTodos[index].completed;
+        setTodos(newTodos);
+      };
   
     return (
       <div>
@@ -43,7 +49,10 @@ export default function TodoApp(){
         
           {todos.map((todo, index) => (
             <div className="to-do-item">
-                <p key={index}>{todo}</p>
+                <p key={index}>{todo.text}</p>
+                <span onClick={() => toggleCompletion(index)}>
+                    {todo.completed ? "✔" : "❌"}
+                </span>
                 <button className="delete-item-button" onClick={() => deleteToDo(index)}>
                 Delete
             </button>
