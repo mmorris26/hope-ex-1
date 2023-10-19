@@ -29,12 +29,22 @@
 }
 
 .to-do-item{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: relative; 
   border: solid 2px gray;
   margin-bottom: 2rem;
   margin-left: 4rem;
   margin-right: 4rem;
   border-radius: 1rem;
   transition: transform 0.3s ease-in-out;
+}
+
+.delete-item-button {
+  position: absolute;
+  right: 0; 
 }
 
 .form-div{
