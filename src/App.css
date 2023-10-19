@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.to-do-item{
+  border: solid 2px gray;
+  margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  border-radius: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.form-div{
+  margin-bottom: 2rem;
+}
+
+.to-do-item:hover {
+  transform: scale(1.05);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

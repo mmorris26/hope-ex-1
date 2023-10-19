@@ -11,19 +11,21 @@ export default function TodoApp(){
     const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (event) => {
+        //console.log(event.target.value);
       setInputValue(event.target.value);
     };
   
     const handleAddTodo = () => {
       if (inputValue.trim()) {
         setTodos([...todos, inputValue]);
+        //console.log(todos)
         setInputValue('');
       }
     };
   
     return (
       <div>
-        <div>
+        <div className="form-div">
           <input
             type="text"
             value={inputValue}
@@ -32,11 +34,13 @@ export default function TodoApp(){
           />
           <button onClick={handleAddTodo}>Add Todo</button>
         </div>
-        <ul>
+        
           {todos.map((todo, index) => (
-            <li key={index}>{todo}</li>
+            <div className="to-do-item">
+                <p key={index}>{todo}</p>
+            </div>
           ))}
-        </ul>
+        
       </div>
     );
   }
