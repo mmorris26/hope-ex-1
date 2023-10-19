@@ -2,15 +2,27 @@ import { useEffect, useState } from "react";
 
 export default function TodoApp(){
     
-    const [todos, setTodos] = useState([
-    { text: 'item 1', completed: false },
-    { text: 'item 2', completed: false },
-    { text: 'item 3', completed: false }
-    ]); 
+  const initialTodos = () => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return [
+        { text: 'item 1', completed: false },
+        { text: 'item 2', completed: false },
+        { text: 'item 3', completed: false }
+      ];
+    }
+  };
 
-    
-    
-    const [inputValue, setInputValue] = useState('');
+  const [todos, setTodos] = useState(initialTodos);
+
+  // Update local storage whenever todos state changes
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  const [inputValue, setInputValue] = useState('');
 
     function handleInputChange(event) {
         //console.log(event.target.value);
