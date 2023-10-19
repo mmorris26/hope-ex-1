@@ -45,6 +45,7 @@
 .delete-item-button {
   position: absolute;
   right: 0; 
+  margin-right: 1rem;
 }
 
 .form-div{
