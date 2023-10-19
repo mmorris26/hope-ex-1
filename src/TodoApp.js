@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function TodoApp(){
     
@@ -7,6 +7,8 @@ export default function TodoApp(){
     { text: 'item 2', completed: false },
     { text: 'item 3', completed: false }
     ]); 
+
+    
     
     const [inputValue, setInputValue] = useState('');
 
@@ -29,11 +31,15 @@ export default function TodoApp(){
         setTodos(newTodos);
     }
 
-    const toggleCompletion = (index) => {
+    function toggleCompletion(index) {
         const newTodos = [...todos];
         newTodos[index].completed = !newTodos[index].completed;
         setTodos(newTodos);
       };
+
+     
+    const uncompletedCount = todos.filter(todo => !todo.completed).length;
+     
   
     return (
       <div>
@@ -45,6 +51,9 @@ export default function TodoApp(){
             placeholder="Enter a todo"
           />
           <button onClick={handleAddTodo}>Add Todo</button>
+        </div>
+        <div>
+            <h2>{uncompletedCount}</h2>
         </div>
         
           {todos.map((todo, index) => (
