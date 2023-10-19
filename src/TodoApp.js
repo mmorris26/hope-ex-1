@@ -70,10 +70,11 @@ export default function TodoApp(){
         
           {todos.map((todo, index) => (
             <div className="to-do-item">
-                <p key={index}>{todo.text}</p>
                 <span onClick={() => toggleCompletion(index)}>
                     {todo.completed ? "✔" : "❌"}
                 </span>
+                <p key={index}>{todo.text}</p>
+                
                 <button className="delete-item-button" onClick={() => deleteToDo(index)}>
                 Delete
             </button>
